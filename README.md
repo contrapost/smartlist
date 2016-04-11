@@ -1,9 +1,9 @@
 # PG4300-16-4-SmartList
 
 Participants:
-* Anita T. Ilieva, ---@student.westerdals.no, anitailieva
-* Anders Skretting, ---@student.westerdals.no, ---
-* Alexander Shipunov, shiale@student.westerdals.no, shiale14
+* Anita T. Ilieva, iliani14@student.westerdals.no, anitailieva
+* Anders Skretting, skrand14@student.westerdals.no, skrand14
+* Alexander Shipunov, shiale14@student.westerdals.no, shiale14
 
 Project name: smart-list
 
