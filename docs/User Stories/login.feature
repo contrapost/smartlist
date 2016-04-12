@@ -1,4 +1,4 @@
-Feature: Login
+Feature: Registration
         As a user
         I would like to log in to my profile
         so that I can be able to see my grocery lists, recipes and bugdet information
