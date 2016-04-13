@@ -11,13 +11,12 @@ Project name: smart-list
 
 Oneliner: next level shopping list application that helps to plan shopping and save your money, monitor your expenses and plan your budget.
 
-* [Concept (link)](Concept_SmartList.pdf)
+* [Concept (link)](docs/Concept_SmartList.pdf)
 
 Attachments:
 --------
 
-* [Eksempel: LeanCanvas for vinlotteri](docs/Vedlegg-LeanCanvas.pdf)
-* [General level application diagram](docs/API.JPG)
+* [General level application diagram](docs/API.pdf)
 * [User Stories as cucumber-features](docs/UserStories/)
 * [Wireframes](docs/wireframes/)
 
