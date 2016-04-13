@@ -5,9 +5,9 @@ Feature: Maintain the application
 
 
 
-Scenario: Admin receives requests from users
-        Given   User sends a request to the admin
-        When    Adminstrator responds to the request
+Scenario: Admin receives requests from stores and users
+        Given   I recieve a request from user/store
+        When    I have access to application
         And     Finds a posssible solution
         Then    Solves the problem/request
-        And     The user gets an email confirming that the issue has been solved
+        And     The user/store gets an email confirming that the issue has been solved

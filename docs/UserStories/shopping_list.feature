@@ -6,8 +6,10 @@ Feature: Grocery list
     
     
 Scenario: User adds groceries to the grocery list
-        Given 	User is logged in
-        When 	User clicks on Write a grocery list
-        And 	Adds groceries and their prices
-        Then 	User saves the grocery list
-        And 	And the grocery list is sent to user's email
+        Given 	I'm logged in
+        When 	I'm on the shopping list page 
+        And 	Choose product, quantity
+        And 	(Optionary) write down/change the price, store name
+        And 	Press "add product" button
+        Then 	I repeat the operation until I'm done
+        And 	The grocery list is complete, can be changed, archived, sent by email
