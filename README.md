@@ -7,17 +7,18 @@ Participants:
 
 Project name: smart-list
 
-## Beskrivelse
+## Concept
 
 Oneliner: next level shopping list application that helps to plan shopping and save your money, monitor your expenses and plan your budget.
 
-TODO: `fyll inn beskrivelse av prosjekt her`
+* [Concept (link)](Concept_SmartList.pdf)
 
-Vedlegg:
+Attachments:
 --------
 
 * [Eksempel: LeanCanvas for vinlotteri](docs/Vedlegg-LeanCanvas.pdf)
-* [Eksempel: skisse som viser systemet på et overordnet nivå](docs/API.JPG)
-* [Eksempel: Gherkin-baserte brukerhistorier (cucumber-features)](features/)
+* [General level application diagram](docs/API.JPG)
+* [User Stories as cucumber-features](docs/UserStories/)
+* [Wireframes](docs/wireframes/)
 
 --
