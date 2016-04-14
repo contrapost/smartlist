@@ -29,3 +29,8 @@ Scenario: New User, problems with registration
         And 	Administrator registers user
         
 Scenrario: Admin registers a store
+        Given Store manager enters the application
+        When  Store manager sends a registration request to admin 
+        And   Admin receives the necessary information from the store
+        Then  Admin registers store as a new user
+        And   Store receives a confirmation email
