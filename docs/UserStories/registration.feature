@@ -27,3 +27,5 @@ Scenario: New User, problems with registration
         And 	And it's impossible to register email
         Then 	User sends email to the admistrator
         And 	Administrator registers user
+        
+Scenrario: Admin registers a store
