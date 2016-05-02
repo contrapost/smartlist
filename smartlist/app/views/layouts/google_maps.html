@@ -41,6 +41,11 @@
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
+                directionsService.route(request, function (response, status) {
+       if (status == google.maps.DirectionsStatus.OK) {
+         directionsDisplay.setDirections(response);
+       }
+     });
           });
         } else {
           handleLocationError(false, infoWindow, map.getCenter());
