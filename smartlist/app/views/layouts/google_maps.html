@@ -70,8 +70,8 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16
         });
-    
-           var input = document.getElementById('pac-input');
+        var infoWindow = new google.maps.InfoWindow({map: map});
+        var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -163,7 +163,7 @@
                               'Error: Your browser doesn\'t support geolocation.');
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&sensor=true"
          async defer></script>
   </body>
 </html>
