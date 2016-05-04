@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @favorite_store.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @favorite_store.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @favorite_store.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @favorite_store.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_favorite_store_path(@favorite_store) %> |
+<%= link_to 'Back', favorite_stores_path %>

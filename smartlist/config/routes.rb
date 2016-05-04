@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorite_stores
    get 'map/index'
  
   # The priority is based upon order of creation: first created -> highest priority.

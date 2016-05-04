@@ -1,0 +1,33 @@
+<%= form_for(@favorite_store) do |f| %>
+  <% if @favorite_store.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@favorite_store.errors.count, "error") %> prohibited this favorite_store from being saved:</h2>
+
+      <ul>
+      <% @favorite_store.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_area :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
