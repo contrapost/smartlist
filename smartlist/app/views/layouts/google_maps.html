@@ -4,61 +4,8 @@
     <title>Geolocation</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 500px;
-          width: 500px;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-        .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 300px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      .pac-container {
-        font-family: Roboto;
-      }
-
-      #type-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-      }
-
-      #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-      #target {
-        width: 345px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+      
   </head>
   <body>
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
@@ -70,6 +17,7 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16
         });
+          
         var infoWindow = new google.maps.InfoWindow({map: map});
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
@@ -141,11 +89,13 @@
                  map: map,
                 title:"You are here!"
              });
-            
+                      infoWindow.close();
+
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
-                directionsService.route(request, function (response, status) {
+        
+              directionsService.route(request, function (response, status) {
        if (status == google.maps.DirectionsStatus.OK) {
          directionsDisplay.setDirections(response);
        }
@@ -157,6 +107,7 @@
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
