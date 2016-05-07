@@ -57,31 +57,45 @@
             };
 
             // Create a marker for each place.
-            markers.push(new google.maps.Marker({
+           
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+          placeId: place.place_id
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+             
+              
+               markers.push(new google.maps.Marker({
                 map: map,
                 title: place.name,
                 position: place.geometry.location,
                 animation: google.maps.Animation.DROP,
                 clickable: true,
-                zoom: 12
+                zoom: 12,
+                placeId: place.place_id
 
             }));
-            
-            for (var i = 0; i < markers.length; i++) {
+             
+              for (var i = 0; i < markers.length; i++) {
                 var marker = markers[i];
-
+                    
             }
-             marker.info = new google.maps.InfoWindow({
-            content:  place.name + '<br/>' + place.geometry.location
+              
+              
+              marker.info = new google.maps.InfoWindow({
+            content:  '<b>' + place.name + '</b>' + '<br/>' +  'LatLng: ' + place.geometry.location + '<br/>' + place.formatted_address + '<br/>' + '<button onclick="myFunction()">Save store</button>'
               });
             
               google.maps.event.addListener(marker, 'click', function() {
                   marker.info.open(map, this);
                 
               });
+          }
+        });
         
             
-            infoWindow.close();
             if (place.geometry.viewport) {
             // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
@@ -107,7 +121,7 @@
         });
         
             marker.info = new google.maps.InfoWindow({
-            content: 'Your location' + '<br/>' + position.coords.latitude + ", " + position.coords.longitude
+            content: '<b>Your location</b>' + '<br/>' + 'Latitude: ' + position.coords.latitude + '<br/>' +  'Longitude: ' + position.coords.longitude
               });
 
               google.maps.event.addListener(marker, 'click', function() {
@@ -133,7 +147,7 @@
            
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLoPFs9gebrJjuQ7v8jBZj2RB-iNNeRWg&libraries=places&callback=initMap"
          async defer></script>
   </body>
 </html>
