@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  root 'smartlist_app#index'
+
+  get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
+
+  get 'dashboard_admin' => 'smartlist_app#dashboard_admin', as: :dashboard_admin
+
+  get 'dashboard_store' => 'smartlist_app#dashboard_store', as: :dashboard_store
+
+  get 'contact_us' => 'smartlist_app#contact_us', as: :contact_us
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
