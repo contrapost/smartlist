@@ -12,7 +12,7 @@ body {
     text-align: center;
 }
 
-strong { font-weight: 500; }
+strong { font-weight: 800; }
 
 a, a:hover, a:focus {
 	color: #19b9e7;
@@ -40,6 +40,10 @@ img { max-width: 100%; }
 ::-moz-selection { background: #19b9e7; color: #fff; text-shadow: none; }
 ::selection { background: #19b9e7; color: #fff; text-shadow: none; }
 
+
+.page-header {
+	margin: 0 0 0 0;
+}
 
 .btn-link-1 {
 	display: inline-block;
@@ -146,7 +150,7 @@ img { max-width: 100%; }
 }
 
 .social-login {
-	margin-top: 35px;
+	margin-top: 15px;
 }
 
 .social-login-buttons {
