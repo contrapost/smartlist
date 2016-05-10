@@ -15,6 +15,12 @@ class FavoriteStoresController < ApplicationController
   # GET /favorite_stores/new
   def new
     @favorite_store = FavoriteStore.new
+    @favorite_store.name = params[:name]
+    @favorite_store.address = params[:address]
+    @favorite_store.latitude = params[:lat]
+    @favorite_store.longitude = params[:lng]
+      @favorite_store.save
+
   end
 
   # GET /favorite_stores/1/edit
