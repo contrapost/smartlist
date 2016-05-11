@@ -7,21 +7,19 @@
     <meta charset="utf-8">
       <%= stylesheet_link_tag 'application' %>
       <%= javascript_include_tag 'application' %>
-      
+        
   </head>
   <body>
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
-      <input type=button value=Save />'
     <script>
-     
-
-      function initMap() {
+    
+    function initMap() {
     "use strict"; 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
     });
-    
+    var place;
     var infoWindow = new google.maps.InfoWindow({map:map});
     
      // Create the search box and link it to the UI element.      
@@ -63,10 +61,19 @@
                 scaledSize: new google.maps.Size(25, 25)
             };
 
+                          function saveData() {
+                $.ajax({ 
+                    type: "GET",
+                    url: "/favorite_stores/new",
+                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
+                            lng: place.geometry.location.lng(),
+                        
+                          }
+            });
+            }
             
-        var infowindow = new google.maps.InfoWindow();
+        
         var service = new google.maps.places.PlacesService(map);
-
         service.getDetails({placeId: place.place_id
         }, function(place, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {  
@@ -85,32 +92,23 @@
               for (var i = 0; i < markers.length; i++) {
                 var marker = markers[i];
               }
-             
-            
+
               marker.info = new google.maps.InfoWindow({
-            content:  '<b>' + place.name + '</b>' + '<br/>' +  'Latitude: ' + place.geometry.location.lat() + '<br/>' + 'Longitude: ' + place.geometry.location.lng() + '<br/>' +  place.formatted_address
+            content:  '<b>' + place.name + '</b>' + '<br/>' +  'Latitude: ' + place.geometry.location.lat() + '<br/>' + 'Longitude: ' + place.geometry.location.lng() + '<br/>' +  place.formatted_address + '<br/><button id=button>Save store</button>'
               });
-              
+
+       
               google.maps.event.addListener(marker, 'click', function() {
                   marker.info.open(map, this);
-                
-                   $.ajax({ 
-                    type: "GET",
-                    url: "/favorite_stores/new",
-                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
-                            lng: place.geometry.location.lng(),
-                        
-                          }
-            });
-                
+                  document.getElementById('button').onclick = saveData;
+    
+     
                   });
+        
+   
           }
         });
-        
-            function saveData (){
-               
-            }
-                       
+                           
             
             if (place.geometry.viewport) {
             // Only geocodes have viewport.
@@ -153,7 +151,18 @@
           handleLocationError(false, infoWindow, map.getCenter());
         }
       }
-
+        
+        function saveData() {
+                $.ajax({ 
+                    type: "GET",
+                    url: "/favorite_stores/new",
+                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
+                            lng: place.geometry.location.lng(),
+                        }
+                });
+       
+            }
+           
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
