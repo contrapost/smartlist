@@ -10,8 +10,12 @@
         
   </head>
   <body>
-      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
+    <input id="storename" class="controls" type="text" placeholder="Store name">
+    <button id=btn>Fetch store details</button>
+
+             
     <script>
     
     function initMap() {
@@ -61,7 +65,7 @@
                 scaledSize: new google.maps.Size(25, 25)
             };
 
-                          function saveData() {
+        function saveData() {
                 $.ajax({ 
                     type: "GET",
                     url: "/favorite_stores/new",
@@ -71,7 +75,6 @@
                           }
             });
             }
-            
         
         var service = new google.maps.places.PlacesService(map);
         service.getDetails({placeId: place.place_id
@@ -101,11 +104,8 @@
               google.maps.event.addListener(marker, 'click', function() {
                   marker.info.open(map, this);
                   document.getElementById('button').onclick = saveData;
-    
-     
-                  });
-        
-   
+            
+              });
           }
         });
                            
@@ -152,17 +152,6 @@
         }
       }
         
-        function saveData() {
-                $.ajax({ 
-                    type: "GET",
-                    url: "/favorite_stores/new",
-                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
-                            lng: place.geometry.location.lng(),
-                        }
-                });
-       
-            }
-           
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
