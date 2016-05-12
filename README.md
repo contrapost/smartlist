@@ -5,7 +5,7 @@ Participants:
 * Anders Skretting, skrand14@student.westerdals.no, skrand14
 * Alexander Shipunov, shiale14@student.westerdals.no, shiale14
 
-Project name: smart-list
+Project name: SMARTLIST
 
 ## Concept
 
