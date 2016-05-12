@@ -1,53 +1,77 @@
 <head>
-    <% content_for :title, "DASHBOARD" %>
-    </head>
+  <% content_for :title, 'DASHBOARD' %>
+</head>
 
-    <body>
+<body>
 
-    <div class="top-content">
+<div class="top-content">
 
-        <div class="inner-bg">
+  <div class="inner-bg">
 
 
-    		<div class="container">
-    			<div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 text">
-                        	<h1 class="page-header"><strong>SMARTLIST</strong></h1>
-                    </div>
-            </div>
-    			<div class="row">
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>SMART LIST</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>RECIPE</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>BUDGET</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>FAVORITE STORES</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>SALES</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>SHOPPING INFO</p>
-	    				</div>
-	    			</div>
-    			</div>
-    		</div>
-    	</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h1 class="page-header"><strong>SMARTLIST</strong></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-box">
+            <%= link_to image_tag('notes.png', width: 100, height: 100, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <p class="dashboard_category_title">SMART LIST</p>
+            <p class="nospace">
+              Make, edit, save or share your shopping lists.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-box">
+            <%= link_to image_tag('recipe.png', width: 100, height: 100, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <p class="dashboard_category_title">RECIPE</p>
+            <p class="nospace">
+              Save your favourite recipes and use them as a basis for your shopping lists.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-box">
+            <%= link_to image_tag('wallet2.png', width: 100, height: 100, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <p class="dashboard_category_title">BUDGET</p>
+            <p class="nospace">
+              Check your expenses and monitor you consumption.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-box">
+            <%= link_to image_tag('store-building.png', width: 100, height: 100, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <p class="dashboard_category_title">FAVORITE STORES</p>
+            <p class="nospace">
+              Find stores on the map and save your favourites.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-box">
+            <%= link_to image_tag('sale.png', width: 100, height: 100, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <p class="dashboard_category_title">SALES</p>
+            <p class="nospace">
+              Check info about active sales.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-box">
+            <%= link_to image_tag('bill.png', width: 100, height: 100, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <p class="dashboard_category_title">SHOPPING INFO</p>
+            <p class="nospace">
+              Save photos of your bills, price tags or other info about your shopping.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    </body>
+  </div>
+</div>
+</body>

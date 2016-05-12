@@ -15,22 +15,33 @@
                         	<h1 class="page-header"><strong>SMARTLIST STORE</strong></h1>
                     </div>
             </div>
-    			<div class="row">
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>ADD SALE</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>EDIT SALE</p>
-	    				</div>
-	    			</div>
-	    			<div class="col-sm-4">
-	    				<div class="form-box">
-	    					<p>EDIT PROFILE</p>
-	    				</div>
-	    			</div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-box">
+              <%= link_to image_tag('sale_register_store.png', width: 200, height: 200, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+              <p class="dashboard_category_title">ADD SALE</p>
+              <p class="nospace">
+                Register a new sale.
+              </p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-box">
+              <%= link_to image_tag('sale_edit_store.png', width: 200, height: 200, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+              <p class="dashboard_category_title">EDIT SALE</p>
+              <p class="nospace">
+                Edit or delete your sales.
+              </p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-box">
+              <%= link_to image_tag('profile_store.png', width: 200, height: 200, border: 0), {action: 'index', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+              <p class="dashboard_category_title">EDIT PROFILE</p>
+              <p class="nospace">
+                Edit your store profile.
+              </p>
+            </div>
+          </div>
     			</div>
     		</div>
     	</div>
