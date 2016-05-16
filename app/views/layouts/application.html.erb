@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title><%= yield(:title) %></title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<title><%= yield(:title) %></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
 <body>
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 
+<footer>
+  <div class="container">
+    <div class="row">
 
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="footer-border"></div>
+        <p>Contact us at <a href="#" target="_blank"><strong>SMARTLIST</strong></a>
+          <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
+      </div>
 
-<!-- Footer -->
-
-	<footer>
-        	<div class="container">
-        		<div class="row">
-
-        			<div class="col-sm-8 col-sm-offset-2">
-        				<div class="footer-border"></div>
-        				<p>Contact us at <a href="#" target="_blank"><strong>SMARTLIST</strong></a>
-        					<i class="fa fa-envelope-o" aria-hidden="true"></i></p>
-        			</div>
-
-        		</div>
-        	</div>
-	</footer>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

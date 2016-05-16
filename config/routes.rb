@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'smartlist_app#index'
+  devise_for :users
 
-  get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
+  root 'smartlist_app#dashboard_user'
+
+  # get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
 
   get 'dashboard_admin' => 'smartlist_app#dashboard_admin', as: :dashboard_admin
 
