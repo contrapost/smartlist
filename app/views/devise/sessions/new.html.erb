@@ -1,5 +1,5 @@
 <head>
-  <% content_for :title, "SMARTLIST LOGIN" %>
+  <% content_for :title, 'SMARTLIST LOGIN' %>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
           <div class="form-box">
             <div class="form-top">
               <div class="form-top-left">
-                <h3 class="dashboard_category_title">Sign in</h3>
+                <h3 class="dashboard_category_title">SIGN IN</h3>
               </div>
               <div class="form-top-right">
                 <i class="fa fa-key"></i>
@@ -45,67 +45,86 @@
                                          autocomplete: 'off', placeholder: 'Password',
                                          class: 'form-password form-control', id: 'form-password'  %>
                   </div>
+                  <!--<% if devise_mapping.rememberable? -%>-->
+                      <!--<div class="field">-->
+                        <!--<%= f.check_box :remember_me %>-->
+                        <!--<%= f.label :remember_me %>-->
+                      <!--</div>-->
+                  <!--<% end -%>-->
                   <%= f.submit 'Sign in', class: 'button btn btn-sign-in' %>
                   <p></p>
-                  <button type="button" class="btn btn-danger" data-toggle="modal"
-                          data-target="#sign_up">Not a smartlister yet?
-                  </button>
-                  <!--<a href="#">Not a smartlister yet?</a>-->
+                  <!--Button for sign up modal form-->
+                  <!--<button type="button" class="btn btn-danger" data-toggle="modal"-->
+                          <!--data-target="#sign_up">Not a smartlister yet?-->
+                  <!--</button>-->
 
-                  <div class="modal" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="madalLabel">
-                    <div class="modal-dialog" role="form">
-                      <div class="modal-content">
-                        <div class="modal-body">
-                          <div>
+                  <%= link_to 'Not a smartlister yet?', new_registration_path(resource_name), class: 'btn btn-danger'%>
 
-                            <div>
-                              <div class="form-top">
-                                <div class="form-top-left">
-                                  <h3>Sign up</h3>
-                                  <p>Fill in the form below to get instant access:</p>
-                                </div>
-                                <div class="form-top-right">
-                                  <i class="fa fa-pencil"></i>
-                                </div>
-                              </div>
-                              <div class="form-bottom">
-                                <form role="form" action="" method="post" class="registration-form" data-toggle="validator">
-                                  <div class="form-group">
-                                    <label class="sr-only" for="form-name">Name</label>
-                                    <input type="text" name="form-name" placeholder="Name..." class="form-name form-control" id="form-name">
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="sr-only" for="form-email">Email</label>
-                                    <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="sr-only" for="form-password">Password</label>
-                                    <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="sr-only" for="form-password">Password Confirm</label>
-                                    <input type="password" name="password_confirm" placeholder="Confirm password..."
-                                           data-match="#form-password" data-match-error="Whoops, these don't match"
-                                           class="form-password form-control" id="password_confirm" >
-                                  </div>
+                  <!--Modal form sign up without backend-->
 
-                                  <button type="submit" class="btn btn-sign-in">Sign up</button>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div> <!--modal-body-->
-                      </div> <!--modal-content-->
-                    </div> <!--modal-dialog-->
-                  </div> <!--modal-->
+                  <!--<div class="modal" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="madalLabel">-->
+                    <!--<div class="modal-dialog" role="form">-->
+                      <!--<div class="modal-content">-->
+                        <!--<div class="modal-body">-->
+                          <!--<div>-->
+
+                            <!--<div>-->
+                              <!--<div class="form-top">-->
+                                <!--<div class="form-top-left">-->
+                                  <!--<h3>Sign up</h3>-->
+                                  <!--<p>Fill in the form below to get instant access:</p>-->
+                                <!--</div>-->
+                                <!--<div class="form-top-right">-->
+                                  <!--<i class="fa fa-pencil"></i>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                              <!--<div class="form-bottom">-->
+                                <!--<form role="form" action="" method="post" class="registration-form" data-toggle="validator">-->
+                                  <!--<div class="form-group">-->
+                                    <!--<label class="sr-only" for="form-name">Name</label>-->
+                                    <!--<input type="text" name="form-name" placeholder="Name..." class="form-name form-control" id="form-name">-->
+                                  <!--</div>-->
+                                  <!--<div class="form-group">-->
+                                    <!--<label class="sr-only" for="form-email">Email</label>-->
+                                    <!--<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">-->
+                                  <!--</div>-->
+                                  <!--<div class="form-group">-->
+                                    <!--<label class="sr-only" for="form-password">Password</label>-->
+                                    <!--<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">-->
+                                  <!--</div>-->
+                                  <!--<div class="form-group">-->
+                                    <!--<label class="sr-only" for="form-password">Password Confirm</label>-->
+                                    <!--<input type="password" name="password_confirm" placeholder="Confirm password..."-->
+                                           <!--data-match="#form-password" data-match-error="Whoops, these don't match"-->
+                                           <!--class="form-password form-control" id="password_confirm" >-->
+                                  <!--</div>-->
+
+                                  <!--<button type="submit" class="btn btn-sign-in">Sign up</button>-->
+                                <!--</form>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                            <!---->
+                          <!--</div>-->
+
+
+                        <!--</div> &lt;!&ndash;modal-body&ndash;&gt;-->
+                      <!--</div> &lt;!&ndash;modal-content&ndash;&gt;-->
+                    <!--</div> &lt;!&ndash;modal-dialog&ndash;&gt;-->
+                  <!--</div> &lt;!&ndash;modal&ndash;&gt;-->
 
 
               <% end %>
+              <p></p>
+                <%= link_to "Forgot your password?", new_password_path(resource_name), class: "link" %>
+
+                <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "link" %>
+
+
             </div>
           </div>
 
           <div class="social-login">
-            <p>Sign in with:</p>
+            <!--<p>Sign in with:</p>-->
             <div class="social-login-buttons">
               <a class="btn btn-link-1 btn-link-1-facebook" href="#">
                 <i class="fa fa-facebook"></i> Facebook
@@ -114,7 +133,7 @@
                 <i class="fa fa-twitter"></i> Twitter
               </a>
               <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-                <i class="fa fa-github" aria-hidden="true"></i> Github
+                <i class="fa fa-google-plus" aria-hidden="true"></i> Googøe+
               </a>
             </div>
           </div>
@@ -128,8 +147,6 @@
   </div>
 
 </div>
-
-<%= render "devise/shared/links" %>
 
 </body>
 
