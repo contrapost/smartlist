@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root 'smartlist_app#dashboard_user'
 
@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get 'dashboard_store' => 'smartlist_app#dashboard_store', as: :dashboard_store
 
   get 'contact_us' => 'smartlist_app#contact_us', as: :contact_us
+
+  # devise_scope :user do
+  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
