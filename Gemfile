@@ -16,7 +16,7 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-google'
+gem "omniauth-google-oauth2"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
