@@ -53,6 +53,7 @@
                   <!--<% end -%>-->
                   <%= f.submit 'Sign in', class: 'button btn btn-sign-in' %>
                   <p></p>
+
                   <!--Button for sign up modal form-->
                   <!--<button type="button" class="btn btn-danger" data-toggle="modal"-->
                           <!--data-target="#sign_up">Not a smartlister yet?-->
@@ -132,7 +133,7 @@
               <%= link_to user_twitter_omniauth_authorize_path, class: 'btn btn-link-1 btn-link-1-twitter' do %>
                   <i class="fa fa-twitter"></i> Twitter
               <% end %>
-              <%= link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-link-1 btn-link-1-google-plus' do %>
+              <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-link-1 btn-link-1-google-plus' do %>
                   <i class="fa fa-google-plus"></i> Google+
               <% end %>
             </div>
