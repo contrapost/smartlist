@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -126,15 +126,14 @@
           <div class="social-login">
             <!--<p>Sign in with:</p>-->
             <div class="social-login-buttons">
-              <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-              <a class="btn btn-link-1 btn-link-1-facebook" href="#">
-                <i class="fa fa-facebook"></i> Facebook
-              </a>
+              <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-link-1 btn-link-1-facebook' do %>
+                  <i class="fa fa-facebook"></i> Facebook
+              <% end %>
               <a class="btn btn-link-1 btn-link-1-twitter" href="#">
                 <i class="fa fa-twitter"></i> Twitter
               </a>
               <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-                <i class="fa fa-google-plus" aria-hidden="true"></i> Googøe+
+                <i class="fa fa-google-plus" aria-hidden="true"></i> Google+
               </a>
             </div>
           </div>
