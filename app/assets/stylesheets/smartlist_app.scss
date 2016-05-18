@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-	background: url(/assets/bg.jpg) left top repeat;
+	background: url(image_path('bg.jpg')) left top repeat;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
