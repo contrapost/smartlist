@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-        user = User.create(
+        user = User.create( #name:auth.extra.raw_info.name, #if we add name to User
             provider: auth.provider,
             uid: auth.uid,
             email: auth.uid+"@twitter.com", #automatically generated because Twitter doesn't share users' email addresses
