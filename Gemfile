@@ -19,7 +19,7 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -40,7 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap-sass'
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,4 +60,5 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# noinspection RailsParamDefResolve
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

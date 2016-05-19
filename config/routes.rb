@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  # noinspection RubyResolve
+  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks'}
 
   root 'smartlist_app#dashboard_user'
-
-  # get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
 
   get 'dashboard_admin' => 'smartlist_app#dashboard_admin', as: :dashboard_admin
 
   get 'dashboard_store' => 'smartlist_app#dashboard_store', as: :dashboard_store
 
   get 'contact_us' => 'smartlist_app#contact_us', as: :contact_us
+
+  # get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
 
   # devise_scope :user do
   #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
