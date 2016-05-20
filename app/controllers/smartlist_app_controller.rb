@@ -1,3 +1,4 @@
+# noinspection ALL
 class SmartlistAppController < ApplicationController
   before_filter :authenticate_user!
 
