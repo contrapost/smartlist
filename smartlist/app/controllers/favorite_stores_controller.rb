@@ -10,6 +10,13 @@ class FavoriteStoresController < ApplicationController
   # GET /favorite_stores/1
   # GET /favorite_stores/1.json
   def show
+        @favorite_store = FavoriteStore.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+        format.json { render json: @favorite_store}
+    end
+
   end
 
   # GET /favorite_stores/new
