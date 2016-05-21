@@ -17,6 +17,7 @@
              
     <script>
     var map;
+    var infoWindow;
     function initMap() {
     "use strict"; 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -122,7 +123,6 @@
         }
             
             if (place.geometry.viewport) {
-            // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
             } else {
                 bounds.extend(place.geometry.location);
@@ -164,31 +164,42 @@
             handleLocationError(true, infoWindow, map.getCenter());
           });
         } else {
-          // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
       }
-        
+       
         function displayData(place) {
-
-        var markers = [];
-
+            var markers = [];
+    
     $.ajax({
         url: "/favorite_stores/",
         type : 'GET',
         dataType: 'json',
         success : function(data) {
-  console.log(data)
+            
             for(var i = 0; i < data.length; i++ ) {
                
+        var content ='<b>' + data[i].name + '</b>';
+        infoWindow = new google.maps.InfoWindow({ content: content });
+                
                 var latlng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
                 var marker = new google.maps.Marker({
-                      position: latlng,
-                      map: map,
+                    position: latlng,
+                    map: map,
+                    info: content,
                     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'                  }); 
                markers.push(data); 
+                map.setZoom(12);    
+        
                
-            }
+            google.maps.event.addListener( marker, 'click', function() {
+
+            infoWindow.setContent( this.info );
+            infoWindow.open( map, this);
+            
+               });
+            
+             }
              
         }
  
@@ -204,9 +215,6 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
-        
-
-           
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWp2rBnoqUO57dNwFQW4nhQb_2Kxdmmx8&libraries=places&callback=initMap"
