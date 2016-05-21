@@ -12,7 +12,7 @@
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <input id="storename" class="controls" type="text" placeholder="Store name">
-    <button id='btn'>Fetch store details</button>
+    <button id='btn'>Fetch store</button>
 
              
     <script>
@@ -64,24 +64,7 @@
                 anchor: new google.maps.Point(17, 34),
                 scaledSize: new google.maps.Size(25, 25)
             };
-
-        function saveData() {
-                $.ajax({ 
-                    type: "GET",
-                    url: "/favorite_stores/new",
-                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
-                            lng: place.geometry.location.lng(),
-                        
-                          }
-            });
-            }
-
-            
-        var service = new google.maps.places.PlacesService(map);
-        service.getDetails({placeId: place.place_id
-        }, function(place, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {  
-          
+             
                markers.push(new google.maps.Marker({
                 map: map,
                 title: place.name,
@@ -94,12 +77,12 @@
             
 
             }));
-
-              
+            
+            
               for (var i = 0; i < markers.length; i++) {
-                var marker = markers[i];
+                  var marker = markers[i];
+                 
               }
-
               marker.info = new google.maps.InfoWindow({
             content:  '<b>' + place.name + '</b>' + '<br/>' +  'Latitude: ' + place.geometry.location.lat() + '<br/>' + 'Longitude: ' + place.geometry.location.lng() + '<br/>' +  place.formatted_address + '<br/><button id=button>Save store</button>'
               });
@@ -111,9 +94,32 @@
             
               });
               
+          
+            
+             
+        function saveData() {
+                $.ajax({ 
+                    type: "GET",
+                    url: "/favorite_stores/new",
+                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
+                            lng: place.geometry.location.lng(),
+                        
+                          }
+            });
+            }
+
+        function encodeAddress() {
+        var service = new google.maps.places.PlacesService(map);
+        service.getDetails({placeId: place.place_id
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {        
+        if (results[0]) {
+        map.setZoom(11);
+        map.setCenter(results[0].geometry.location);
+        }
           }
-        });
-                           
+    });
+        }
             
             if (place.geometry.viewport) {
             // Only geocodes have viewport.
@@ -168,11 +174,11 @@
         var markers = [];
 
     $.ajax({
-        url: "/favorite_stores",
+        url: "/favorite_stores/",
         type : 'GET',
         dataType: 'json',
         success : function(data) {
-  
+  console.log(data)
             for(var i = 0; i < data.length; i++ ) {
                
                 var latlng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
@@ -181,19 +187,12 @@
                       map: map,
                     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'                  }); 
                markers.push(data); 
+               
             }
              
         }
-        
-        
-        ,
-        error: function(){
-           
-        },
-        async : true
+ 
     });
-
-
 
 }
          document.getElementById('btn').onclick = displayData;
