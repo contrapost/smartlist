@@ -1,5 +1,35 @@
 Rails.application.routes.draw do
 
+  get 'admin/show_users'
+
+  get 'admin/show_stores'
+
+  get 'admin/show_user'
+
+  get 'admin/show_store'
+
+  get 'admin/new_user'
+
+  get 'admin/new_store'
+
+  get 'admin/edit_user'
+
+  get 'admin/edit_store'
+
+  get 'admin/create_user'
+
+  get 'admin/create_store'
+
+  get 'admin/update_user'
+
+  get 'admin/update_store'
+
+  # delete 'admin/destroy_user'
+
+  get 'admin/destroy_store'
+
+  match 'users/:id' => 'admin#destroy_user', :via => :delete, :as => :admin_destroy_user
+
   resources :favourite_stores
   # noinspection RubyResolve
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks'}

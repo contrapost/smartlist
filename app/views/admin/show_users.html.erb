@@ -1,0 +1,17 @@
+<table class="table table-fixed">
+  <thead>
+  <tr>
+    <th class="col-xs-4">Email</th>
+    <th class="col-xs-2"></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td class="col-xs-4 left-al-cell"><%= user.email %></td>
+        <td class="col-xs-2"><%= link_to 'delete', admin_destroy_user_path(user), data: { confirm: "Are you sure?" }, method: :delete, class: 'link' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
