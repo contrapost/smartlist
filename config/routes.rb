@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :favourite_stores
   # noinspection RubyResolve
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks'}
 

@@ -1,0 +1,71 @@
+<head>
+  <% content_for :title, 'FAVOURITE STORES' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h1 class="page-header"><strong>FAVOURITE STORES</strong></h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+          <div class="col-xs-12 col-sm-6">
+
+            <!--Anita, put the Google map here-->
+
+            <%= image_tag('dummy_map.png', width: 511, height: 433, border: 0) %>
+
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>
+                <strong>Favourite stores:</strong>
+              </h4>
+            </div>
+            <table class="table table-fixed">
+              <thead>
+              <tr>
+                <th class="col-xs-4">Name</th>
+                <th class="col-xs-6">Address</th>
+                <th class="col-xs-2"></th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <% @favourite_stores.each do |favourite_store| %>
+                  <tr>
+                    <td class="col-xs-4 left-al-cell"><%= favourite_store.name %></td>
+                    <td class="col-xs-6 left-al-cell"><%= favourite_store.address %></td>
+                    <td class="col-xs-2"><%= link_to 'delete', favourite_store, method: :delete,
+                                                     data: {confirm: 'Are you sure?'}, class: 'link' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+

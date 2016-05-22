@@ -1,0 +1,29 @@
+<p>
+  <strong>Name:</strong>
+  <%= @favourite_store.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @favourite_store.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @favourite_store.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @favourite_store.longitude %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @favourite_store.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_favourite_store_path(@favourite_store) %> |
+<%= link_to 'Back', favourite_stores_path %>
+
+

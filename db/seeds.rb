@@ -15,3 +15,8 @@ admin.save!
 store = User.new :email => 'store@store.com', :password => '123456789', :password_confirmation => '123456789', :store => true
 store.skip_confirmation!
 store.save!
+
+FavouriteStore.create!(name: 'Kiwi', address: '1, Address str', user_id: 1)
+FavouriteStore.create!(name: 'Menu', address: '2, Address str', user_id: 1)
+FavouriteStore.create!(name: 'Coop', address: '3, Address str', user_id: 1)
+FavouriteStore.create!(name: 'Kiwi', address: '3, Address str', user_id: 1)

@@ -1,5 +1,7 @@
 # noinspection ALL
 class User < ActiveRecord::Base
+  has_many :favourite_stores, dependent: :destroy
+
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and
   devise :database_authenticatable, :registerable, :confirmable,
