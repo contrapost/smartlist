@@ -26,13 +26,14 @@
     <input id="user_input" class="controls" type="text" placeholder="Search Box">
     <button id='btn'>Fetch store</button>
 
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWp2rBnoqUO57dNwFQW4nhQb_2Kxdmmx8&libraries=places"></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWp2rBnoqUO57dNwFQW4nhQb_2Kxdmmx8&libraries=places&callback=initMap"
+         async defer></script>
                 
     <script>
         
     var infoWindow;
    
-    google.maps.event.addDomListener(window, "load", function() {
+    function initMap() {
     "use strict"; 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
@@ -50,6 +51,7 @@
     map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
     });
+        
     
     var markers = [];
     
@@ -223,7 +225,7 @@
         
                 infoWindow.close();
 
-      });
+      }
     </script>
     
           </div>
