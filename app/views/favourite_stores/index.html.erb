@@ -15,19 +15,17 @@
           <h1 class="page-header"><strong>FAVOURITE STORES</strong></h1>
         </div>
       </div>
-
+ 
       <div class="row">
         <div class="form-box">
           <div class="col-xs-12 col-sm-6">
 
-               
-              
-    <div id="map"></div>
-    <input id="user_input" class="controls" type="text" placeholder="Search Box">
-    <button id='btn'>Fetch store</button>
-
        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWp2rBnoqUO57dNwFQW4nhQb_2Kxdmmx8&libraries=places&callback=initMap"
          async defer></script>
+              
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <button id='btn'>Fetch store</button>
                 
     <script>
         
@@ -42,7 +40,7 @@
     var infoWindow = new google.maps.InfoWindow({map:map});
     
      // Create the search box and link it to the UI element.      
-    var input = document.getElementById('user_input');
+    var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     
@@ -62,11 +60,9 @@
         if (places.length === 0) {
             return;
         }
-      // Clear out the old markers.
-        markers.forEach(function (marker) {
-            marker.setMap(null);
-        });
-        markers = [];
+      // Clear out the old markers from the previous search.
+        clearOldMarkers();
+
      
     // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
@@ -174,16 +170,16 @@
         }
   
        
-        function displayData(place) {
-            var markers = [];
-    
-    $.ajax({
+        function displayData() {
+        var markers = [];
+   
+        $.ajax({
         url: "/favourite_stores/",
         type : 'GET',
         dataType: 'json',
         success : function(data) {
             
-            for(var i = 0; i < data.length; i++ ) {
+        for(var i = 0; i < data.length; i++ ) {
                
         var content ='<b>' + data[i].name + '</b>';
         infoWindow = new google.maps.InfoWindow({ content: content });
@@ -194,36 +190,40 @@
                     map: map,
                     info: content,
                     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'                  }); 
-               markers.push(data); 
+                markers.push(data); 
                 map.setZoom(11); 
-            
+                clearOldMarkers();
         
                
             google.maps.event.addListener( marker, 'click', function() {
             infoWindow.setContent( this.info );
             infoWindow.open( map, this);
+                
             
                });
-            
-             }
-             
+            }    
         }
- 
     });
-        
 }
-         document.getElementById('btn').onclick = displayData;
-        
-        
-        
+        function clearOldMarkers() {
+            markers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+            markers = [];
+        }
+
+    
+                  
+
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
-        
-                infoWindow.close();
+                
+        infoWindow.close();
+        document.getElementById('btn').onclick = displayData;
 
       }
     </script>
