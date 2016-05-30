@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :sales
   get 'admin/show_users'
 
   get 'admin/show_stores'
