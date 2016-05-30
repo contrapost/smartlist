@@ -108,11 +108,12 @@
                     url: "/favourite_stores/new",
                     data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
                             lng: place.geometry.location.lng(),
-                        
                           }
             });
             marker.info.close();
-            window.location.reload();
+            $('#wrapper').load(document.URL +  ' #wrapper');
+
+
             }
         function encodeAddress() {
         var service = new google.maps.places.PlacesService(map);
@@ -238,6 +239,7 @@
                 <strong>Favourite stores:</strong>
               </h4>
             </div>
+              <div id="wrapper">
             <table class="table table-fixed">
               <thead>
               <tr>
@@ -258,6 +260,7 @@
               <% end %>
               </tbody>
             </table>
+              </div>
           </div>
 
         </div>
