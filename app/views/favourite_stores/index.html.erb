@@ -30,7 +30,8 @@
     <script>
         
     var infoWindow;
-   
+    var favouriteStores = [];
+        
     function initMap() {
     "use strict"; 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -61,7 +62,7 @@
             return;
         }
       // Clear out the old markers from the previous search.
-        clearOldMarkers();
+        clearSearchedMarkers();
 
      
     // For each place, get the icon, name and location.
@@ -100,8 +101,8 @@
                   document.getElementById('button').onclick = saveData;
             
               });
-              
-             
+            
+     
         function saveData() {
                 $.ajax({ 
                     type: "GET",
@@ -170,9 +171,11 @@
           handleLocationError(false, infoWindow, map.getCenter());
         }
   
+        
+            
        
-        function displayData() {
-        var markers = [];
+        function showMarkers() {
+        
    
         $.ajax({
         url: "/favourite_stores/",
@@ -186,17 +189,17 @@
         infoWindow = new google.maps.InfoWindow({ content: content });
                 
                 var latlng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                var marker = new google.maps.Marker({
+                favouriteStores.push(new google.maps.Marker({
                     position: latlng,
                     map: map,
                     info: content,
-                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'                  }); 
-                markers.push(data); 
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'                  })); 
+                
                 map.setZoom(11); 
-                clearOldMarkers();
+                clearSearchedMarkers();
         
                
-            google.maps.event.addListener( marker, 'click', function() {
+            google.maps.event.addListener( favouriteStores, 'click', function() {
             infoWindow.setContent( this.info );
             infoWindow.open( map, this);
                 
@@ -206,14 +209,20 @@
         }
     });
 }
-        function clearOldMarkers() {
-            markers.forEach(function (marker) {
-            marker.setMap(null);
+        
+    function clearSearchedMarkers() {
+        markers.forEach(function (marker) {
+        marker.setMap(null);
         });
-            markers = [];
+        markers = [];
         }
-
-    
+        
+        
+     function hideMarkers() {
+        for (var i = 0; i < favouriteStores.length; i++) {
+        favouriteStores[i].setVisible(false);
+   }
+   }
                   
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -222,9 +231,12 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
-                
+        
+            
         infoWindow.close();
-        document.getElementById('btn').onclick = displayData;
+        document.getElementById('btnShow').onclick = showMarkers;
+        document.getElementById('btnHide').onclick = hideMarkers;
+
 
       }
     </script>
@@ -264,7 +276,9 @@
           </div>
 
         </div>
-          <button id='btn'>Show favourite stores</button>
+        <button id='btnShow'>Show favourite stores</button>
+        <button id='btnHide'>Hide favourite stores</button>
+
 
       </div>
 
