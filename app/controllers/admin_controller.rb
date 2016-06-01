@@ -23,6 +23,7 @@ class AdminController < ApplicationController
   end
 
   def edit_user
+
   end
 
   def edit_store
