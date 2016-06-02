@@ -1,5 +1,6 @@
 # noinspection RubyResolve
 class AdminController < ApplicationController
+  before_filter :authenticate_user!, :admin?
   # before_action :set_user, only: [:show_user, :show_store, :edit_user, :edit_store, :update_user, :update_store, :destroy_user, :destroy_store]
 
   def show_users
@@ -118,5 +119,13 @@ class AdminController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:email, :password, :confirm_password, :store)
+  end
+
+  def admin?
+    if current_user.admin?
+
+    else
+      redirect_to '/'
+    end
   end
 end
