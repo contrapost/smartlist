@@ -1,3 +1,4 @@
+# noinspection RubyResolve
 class AdminController < ApplicationController
   # before_action :set_user, only: [:show_user, :show_store, :edit_user, :edit_store, :update_user, :update_store, :destroy_user, :destroy_store]
 
@@ -24,61 +25,69 @@ class AdminController < ApplicationController
 
   def edit_user
     @user = User.find(params[:id])
-
   end
 
-  def edit_store
-  end
 
   def create_user
-    @user = User.new(favourite_store_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'Favourite store was successfully created.' }
-        format.json { render :show_user, status: :created, location: @user }
+    if User.where(email: params['user_email']).blank?
+      @user
+      if params['store']
+        @user = User.new :email => params['user_email'], :password => 'dummypassword', :password_confirmation => 'dummypassword', :store => true
       else
-        format.html { render :new_user }
+        @user = User.new :email => params['user_email'], :password => 'dummypassword', :password_confirmation => 'dummypassword'
+      end
+      @user.skip_confirmation!
+
+      @user.send_reset_password_instructions
+      @user.save!
+      respond_to do |format|
+        if params['store']
+          format.html { redirect_to admin_show_stores_url, notice: "Store was successfully created" }
+        else
+          format.html { redirect_to admin_show_users_url, notice: "User was successfully created" }
+        end
+        format.json { render :show_user, status: :ok, location: @user }
+      end
+    else
+      respond_to do |format|
+        if params['store']
+          format.html { redirect_to admin_new_store_path, notice: "#{params['user_email']} is already taken!" }
+        else
+          format.html { redirect_to admin_new_user_path, notice: "#{params['user_email']} is already taken!" }
+        end
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
-  def create_store
-    @user = User.new(favourite_store_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'Favourite store was successfully created.' }
-        format.json { render :show_store, status: :created, location: @user }
-      else
-        format.html { render :new_user }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
+  # noinspection RailsChecklist01
   def update_user
     @user = User.find(params[:id])
-    @user.email = params['user_email']
-    @user.skip_reconfirmation!
-    @user.save
-    respond_to do |format|
-        format.html { redirect_to admin_show_users_url, notice: 'Favourite store was successfully updated.' }
-        format.json { render :show_user, status: :ok, location: @user }
-    end
-  end
-
-  def update_store
-    respond_to do |format|
-      if @user.update(favourite_store_params)
-        format.html { redirect_to @user, notice: 'Favourite store was successfully updated.' }
-        format.json { render :show_store, status: :ok, location: @user }
-      else
-        format.html { render :edit_store }
+    @user.email = email_after = params['user_email']
+    if User.where(email: params['user_email']).blank?
+      is_store = @user.store
+      user_email_before = @user.email
+      @user.skip_reconfirmation!
+      @user.save
+      respond_to do |format|
+        if is_store
+          format.html { redirect_to admin_show_stores_url, notice: "User #{user_email_before} was successfully changed to #{email_after}" }
+          format.json { render :show_user, status: :ok, location: @user }
+        else
+          format.html { redirect_to admin_show_users_url, notice: "User #{user_email_before} was successfully changed to #{email_after}" }
+          format.json { render :show_user, status: :ok, location: @user }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to admin_edit_user_url(id: @user.id), notice: "#{email_after} is already taken!" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # DELETE /users/1

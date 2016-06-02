@@ -1,2 +1,41 @@
-<h1>Admin#new_user</h1>
-<p>Find me in app/views/admin/new_user.html.erb</p>
+<head>
+  <% content_for :title, 'Create user' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h3 class="page-header"><strong>Create user</strong></h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+          <%= form_tag controller: :admin, action: :create_user  do %>
+              <div class="field">
+                <%= email_field_tag :user_email, 'user email' %>
+              </div>
+              </br>
+              <div class="actions">
+                <%= submit_tag "Create" %>
+              </div>
+          <% end %>
+          <div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>

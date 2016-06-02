@@ -20,9 +20,7 @@ Rails.application.routes.draw do
 
   get 'admin/edit_user'
 
-  get 'admin/edit_store'
-
-  get 'admin/create_user'
+  post 'admin/create_user'
 
   get 'admin/create_store'
 
