@@ -12,8 +12,6 @@ Rails.application.routes.draw do
 
   get 'admin/show_user'
 
-  get 'admin/show_store'
-
   get 'admin/new_user'
 
   get 'admin/new_store'
@@ -22,15 +20,9 @@ Rails.application.routes.draw do
 
   post 'admin/create_user'
 
-  get 'admin/create_store'
-
   post 'admin/update_user'
 
-  get 'admin/update_store'
-
   delete 'admin/destroy_user'
-
-  get 'admin/destroy_store'
 
   # match 'users/:id' => 'admin#destroy_user', :via => :delete, :as => :admin_destroy_user
 

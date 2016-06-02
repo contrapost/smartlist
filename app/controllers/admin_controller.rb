@@ -13,9 +13,6 @@ class AdminController < ApplicationController
   def show_user
   end
 
-  def show_store
-  end
-
   def new_user
     @user=User.new
   end
@@ -32,9 +29,12 @@ class AdminController < ApplicationController
     if User.where(email: params['user_email']).blank?
       @user
       if params['store']
-        @user = User.new :email => params['user_email'], :password => 'dummypassword', :password_confirmation => 'dummypassword', :store => true
+        @user = User.new :email => params['user_email'], :password => 'verySpecialAnd5839xxtuUnbruteforcableBecauseofSpellinNoproblemo0303030395passworT',
+                         :password_confirmation => 'verySpecialAnd5839xxtuUnbruteforcableBecauseofSpellinNoproblemo0303030395passworT',
+                         :store => true
       else
-        @user = User.new :email => params['user_email'], :password => 'dummypassword', :password_confirmation => 'dummypassword'
+        @user = User.new :email => params['user_email'], :password => 'verySpecialAnd5839xxtuUnbruteforcableBecauseofSpellinNoproblemo0303030395passworT',
+                         :password_confirmation => 'verySpecialAnd5839xxtuUnbruteforcableBecauseofSpellinNoproblemo0303030395passworT'
       end
       @user.skip_confirmation!
 
@@ -42,9 +42,9 @@ class AdminController < ApplicationController
       @user.save!
       respond_to do |format|
         if params['store']
-          format.html { redirect_to admin_show_stores_url, notice: "Store was successfully created" }
+          format.html { redirect_to admin_show_stores_url, notice: 'Store was successfully created' }
         else
-          format.html { redirect_to admin_show_users_url, notice: "User was successfully created" }
+          format.html { redirect_to admin_show_users_url, notice: 'User was successfully created' }
         end
         format.json { render :show_user, status: :ok, location: @user }
       end
@@ -65,10 +65,11 @@ class AdminController < ApplicationController
   # noinspection RailsChecklist01
   def update_user
     @user = User.find(params[:id])
-    @user.email = email_after = params['user_email']
+    email_after = params['user_email']
     if User.where(email: params['user_email']).blank?
-      is_store = @user.store
       user_email_before = @user.email
+      @user.email = params['user_email']
+      is_store = @user.store
       @user.skip_reconfirmation!
       @user.save
       respond_to do |format|
