@@ -37,3 +37,13 @@ FavouriteStore.create!(name: 'Kiwi', address: '1, Address str', user_id: 2)
 FavouriteStore.create!(name: 'Menu', address: '2, Address str', user_id: 3)
 FavouriteStore.create!(name: 'Coop', address: '3, Address str', user_id: 3)
 FavouriteStore.create!(name: 'Kiwi', address: '3, Address str', user_id: 3)
+
+
+Sale.create!(user_id: 5, name:'30% rabatt på alt!', expiry_date: DateTime.now, image_url: 'no_image_yet' )
+
+Product.create!(user_id: 1, name: 'Milk', description: 'Milk is very healthy', price: 11.43, store: 'Rema 100000')
+Product.create!(user_id: 1, name: 'Apples', description: 'Apples are very healthy', price: 12.43, store: 'Kiwi')
+Product.create!(user_id: 1, name: 'Onion', description: 'Onion is very healthy', price: 13.43, store: 'Coop')
+Product.create!(user_id: 2, name: 'Sausage', description: 'Sausages are very healthy', price: 14.43, store: 'Coop')
+Product.create!(user_id: 3, name: 'Milk', description: 'Milk is very healthy', price: 15.43, store: 'Menu')
+Product.create!(user_id: 3, name: 'Ham', description: 'Ham is very healthy', price: 16.43, store: 'Ica')
