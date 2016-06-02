@@ -45,9 +45,16 @@
 
                 <% @users.each do |user| %>
                     <tr>
-                      <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left-al-cell"><%= user.email %></td>
-                      <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><%= link_to 'edit', admin_edit_user_path, class: 'btn btn-info' %></td>
-                      <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><%= link_to 'delete', admin_destroy_user_path(user), data: {confirm: "Are you sure?"}, class: 'btn btn-warning' %></td>
+                      <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left-al-cell">
+                        <%= user.email %>
+                      </td>
+                      <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <%= link_to 'edit', {controller: :admin, action: :edit_user, id: user.id}, class: 'btn btn-info' %>
+                        </td>
+                      <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <%= link_to 'delete', {controller: :admin, action: :destroy_user, id: user.id}, data: {confirm: "Are you sure?"},
+                                    method: :delete, class: 'btn btn-warning' %>
+                      </td>
                     </tr>
                 <% end %>
                 </tbody>

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   resources :sales
+
+  resource :user do
+    resource :users
+  end
+
   get 'admin/show_users'
 
   get 'admin/show_stores'
@@ -21,15 +26,15 @@ Rails.application.routes.draw do
 
   get 'admin/create_store'
 
-  get 'admin/update_user'
+  post 'admin/update_user'
 
   get 'admin/update_store'
 
-  # delete 'admin/destroy_user'
+  delete 'admin/destroy_user'
 
   get 'admin/destroy_store'
 
-  match 'users/:id' => 'admin#destroy_user', :via => :delete, :as => :admin_destroy_user
+  # match 'users/:id' => 'admin#destroy_user', :via => :delete, :as => :admin_destroy_user
 
   resources :favourite_stores
   # noinspection RubyResolve

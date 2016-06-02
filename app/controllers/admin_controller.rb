@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_action :set_user, only: [:show_user, :show_store, :edit_user, :edit_store, :update_user, :update_store, :destroy_user, :destroy_store]
+  # before_action :set_user, only: [:show_user, :show_store, :edit_user, :edit_store, :update_user, :update_store, :destroy_user, :destroy_store]
 
   def show_users
     @users = User.where(store: false, admin: false)
@@ -23,6 +23,7 @@ class AdminController < ApplicationController
   end
 
   def edit_user
+    @user = User.find(params[:id])
 
   end
 
@@ -58,14 +59,13 @@ class AdminController < ApplicationController
   end
 
   def update_user
+    @user = User.find(params[:id])
+    @user.email = params['user_email']
+    @user.skip_reconfirmation!
+    @user.save
     respond_to do |format|
-      if @user.update(favourite_store_params)
-        format.html { redirect_to @user, notice: 'Favourite store was successfully updated.' }
+        format.html { redirect_to admin_show_users_url, notice: 'Favourite store was successfully updated.' }
         format.json { render :show_user, status: :ok, location: @user }
-      else
-        format.html { render :edit_user }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
     end
   end
 

@@ -1,2 +1,38 @@
-<h1>Admin#edit_user</h1>
-<p>Find me in app/views/admin/edit_user.html.erb</p>
+<head>
+  <% content_for :title, "Edit #{@user.email}" %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h3 class="page-header"><strong>Edit user: <%= @user.email %></strong></h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+          <%= form_tag controller: :admin, action: :update_user, id: @user.id do %>
+              <%= text_field_tag :user_email %>
+              <div class="actions">
+                <%= submit_tag "Update" %>
+              </div>
+          <% end %>
+          <div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
