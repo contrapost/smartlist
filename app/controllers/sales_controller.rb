@@ -1,10 +1,12 @@
+# noinspection ALL
 class SalesController < ApplicationController
+  before_filter :authenticate_user!, :store?
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @sales = Sale.where(user_id: current_user.id)
   end
 
   # GET /sales/1
@@ -70,5 +72,9 @@ class SalesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
       params.require(:sale).permit(:user_id, :name, :expiry_date, :image_url)
+    end
+
+    def store?
+        redirect_to '/' unless current_user.store?
     end
 end

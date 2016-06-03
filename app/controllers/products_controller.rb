@@ -1,6 +1,6 @@
 # noinspection RubyResolve
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :usual_user?
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -64,6 +64,10 @@ class ProductsController < ApplicationController
   end
 
   private
+  def usual_user?
+    redirect_to '/' unless !current_user.admin? && !current_user.store?
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])

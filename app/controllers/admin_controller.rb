@@ -122,10 +122,6 @@ class AdminController < ApplicationController
   end
 
   def admin?
-    if current_user.admin?
-
-    else
-      redirect_to '/'
-    end
+      redirect_to '/' unless current_user.admin?
   end
 end

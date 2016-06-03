@@ -25,6 +25,7 @@ store2 = User.new :email => 'store2@store.com', :password => '123456789', :passw
 store2.skip_confirmation!
 store2.save!
 
+
 FavouriteStore.create!(name: 'Kiwi', address: '1, Address str', user_id: 1)
 FavouriteStore.create!(name: 'Menu', address: '2, Address str', user_id: 1)
 FavouriteStore.create!(name: 'Coop', address: '3, Address str', user_id: 1)
@@ -39,7 +40,13 @@ FavouriteStore.create!(name: 'Coop', address: '3, Address str', user_id: 3)
 FavouriteStore.create!(name: 'Kiwi', address: '3, Address str', user_id: 3)
 
 
-Sale.create!(user_id: 5, name:'30% rabatt på alt!', expiry_date: DateTime.now, image_url: 'no_image_yet' )
+Sale.create!(user_id: 5, name:'30% rabatt på alt!', expiry_date: DateTime.now + 10.days, image_url: 'no_image_yet' )
+Sale.create!(user_id: 5, name:'50% rabatt på keefer!!!', expiry_date: DateTime.now + 10.days, image_url: 'no_image_yet' )
+Sale.create!(user_id: 5, name:'100% rabatt på Farris!', expiry_date: DateTime.now + 10.days, image_url: 'no_image_yet' )
+Sale.create!(user_id: 6, name:'250% rabatt på epler!', expiry_date: DateTime.now + 10.days, image_url: 'no_image_yet' )
+Sale.create!(user_id: 6, name:'12345% rabatt på alt!', expiry_date: DateTime.now + 10.days, image_url: 'no_image_yet' )
+Sale.create!(user_id: 5, name:'Ingen rabatt på alt!', expiry_date: DateTime.now + 10.days, image_url: 'no_image_yet' )
+
 
 Product.create!(user_id: 1, name: 'Milk', description: 'Milk is very healthy', price: 11.43, store: 'Rema 100000')
 Product.create!(user_id: 1, name: 'Apples', description: 'Apples are very healthy', price: 12.43, store: 'Kiwi')
