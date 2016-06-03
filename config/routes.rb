@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'shopping_lists/show_favourite_lists'
+
+  get 'shopping_lists/show_active_list'
+
+  get 'shopping_lists/delete_favourite_list'
+
   resources :products
   resources :sales
 
