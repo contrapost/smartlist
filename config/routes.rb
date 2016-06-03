@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
   get 'contact_us' => 'smartlist_app#contact_us', as: :contact_us
 
+  get '/show_all_sales', to: 'smartlist_app#show_all_sales'
+
   # get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
 
   # devise_scope :user do

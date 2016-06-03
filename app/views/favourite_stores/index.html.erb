@@ -15,232 +15,237 @@
           <h1 class="page-header"><strong>FAVOURITE STORES</strong></h1>
         </div>
       </div>
- 
+
       <div class="row">
         <div class="form-box">
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-6 ">
 
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB843sIl8pXEtrNXfQM75N0rm1xo-iowfE&libraries=places&callback=initMap"
-         async defer></script>
-              
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
-    
-                
-    <script>
-        
-    var infoWindow;
-    var favouriteStores = [];
-        
-    function initMap() {
-    "use strict"; 
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-    });
-    var place;
-    var infoWindow = new google.maps.InfoWindow({map:map});
-    
-     // Create the search box and link it to the UI element.      
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    
-    
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function () {
-        searchBox.setBounds(map.getBounds());
-    });
-        
-    
-    var markers = [];
-    
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', function () {
-        var places = searchBox.getPlaces();
-        if (places.length === 0) {
-            return;
-        }
-      // Clear out the old markers from the previous search.
-        clearSearchedMarkers();
+            <div class="panel panel-default map_contailner">
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB843sIl8pXEtrNXfQM75N0rm1xo-iowfE&libraries=places&callback=initMap"
+                      async defer></script>
 
-     
-    // For each place, get the icon, name and location.
-        var bounds = new google.maps.LatLngBounds();
-        places.forEach(function (place) {
-            var icon = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-             
-               markers.push(new google.maps.Marker({
-                map: map,
-                title: place.name,
-                position: place.geometry.location,
-                animation: google.maps.Animation.DROP,
-                clickable: true,
-                zoom: 12,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-            
-            }));
-            
-            
-              for (var i = 0; i < markers.length; i++) {
-                  var marker = markers[i];
-                 
-              }
-              marker.info = new google.maps.InfoWindow({
-            content:  '<b>' + place.name + '</b>' + '<br/>' +  'Latitude: ' + place.geometry.location.lat() + '<br/>' + 'Longitude: ' + place.geometry.location.lng() + '<br/>' +  place.formatted_address + '<br/><button id=button>Save store</button>'
-              });
-       
-              google.maps.event.addListener(marker, 'click', function() {
-                  marker.info.open(map, this);
-                  document.getElementById('button').onclick = saveData;
-            
-              });
-            
-     
-        function saveData() {
-                $.ajax({ 
-                    type: "GET",
-                    url: "/favourite_stores/new",
-                    data: {name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(), 
+              <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+              <div id="map"></div>
+
+
+              <script>
+
+                var infoWindow;
+                var favouriteStores = [];
+
+                function initMap() {
+                  "use strict";
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 16,
+                  });
+                  var place;
+                  var infoWindow = new google.maps.InfoWindow({map: map});
+
+                  // Create the search box and link it to the UI element.
+                  var input = document.getElementById('pac-input');
+                  var searchBox = new google.maps.places.SearchBox(input);
+                  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+
+                  // Bias the SearchBox results towards current map's viewport.
+                  map.addListener('bounds_changed', function () {
+                    searchBox.setBounds(map.getBounds());
+                  });
+
+
+                  var markers = [];
+
+                  // Listen for the event fired when the user selects a prediction and retrieve
+                  // more details for that place.
+                  searchBox.addListener('places_changed', function () {
+                    var places = searchBox.getPlaces();
+                    if (places.length === 0) {
+                      return;
+                    }
+                    // Clear out the old markers from the previous search.
+                    clearSearchedMarkers();
+
+
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function (place) {
+                      var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                      };
+
+                      markers.push(new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location,
+                        animation: google.maps.Animation.DROP,
+                        clickable: true,
+                        zoom: 12,
+                        icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+
+                      }));
+
+
+                      for (var i = 0; i < markers.length; i++) {
+                        var marker = markers[i];
+
+                      }
+                      marker.info = new google.maps.InfoWindow({
+                        content: '<b>' + place.name + '</b>' + '<br/>' + 'Latitude: ' + place.geometry.location.lat() + '<br/>' + 'Longitude: ' + place.geometry.location.lng() + '<br/>' + place.formatted_address + '<br/><button id=button>Save store</button>'
+                      });
+
+                      google.maps.event.addListener(marker, 'click', function () {
+                        marker.info.open(map, this);
+                        document.getElementById('button').onclick = saveData;
+
+                      });
+
+
+                      function saveData() {
+                        $.ajax({
+                          type: "GET",
+                          url: "/favourite_stores/new",
+                          data: {
+                            name: place.name, address: place.formatted_address, lat: place.geometry.location.lat(),
                             lng: place.geometry.location.lng(),
                           }
-            });
-            marker.info.close();
-            $('#wrapper').load(document.URL +  ' #wrapper');
+                        });
+                        marker.info.close();
+                        $('#wrapper').load(document.URL + ' #wrapper');
 
 
-            }
-        function encodeAddress() {
-        var service = new google.maps.places.PlacesService(map);
-        service.getDetails({placeId: place.place_id
-        }, function(place, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {        
-        if (results[0]) {
-        map.setZoom(11);
-        map.setCenter(results[0].geometry.location);
-        }
-          }
-    });
-        }
-            
-            if (place.geometry.viewport) {
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
-        });    
-        
-        map.fitBounds(bounds);
-    });
-          
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            var marker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                clickable: true,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-        });
-        
-            marker.info = new google.maps.InfoWindow({
-            content: '<b>Your location</b>' + '<br/>' + 'Latitude: ' + position.coords.latitude + '<br/>' +  'Longitude: ' + position.coords.longitude
-              });
-              
-              
-              google.maps.event.addListener(marker, 'click', function() {
-                  marker.info.open(map, marker);
-                 
-              });
-            
-            map.setCenter(pos);
-              
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-  
-        
-            
-       
-        function showMarkers() {
-        
-   
-        $.ajax({
-        url: "/favourite_stores/",
-        type : 'GET',
-        dataType: 'json',
-        success : function(data) {
-            
-        for(var i = 0; i < data.length; i++ ) {
-               
-        var content ='<b>' + data[i].name + '</b>';
-        infoWindow = new google.maps.InfoWindow({ content: content });
-                
-                var latlng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                favouriteStores.push(new google.maps.Marker({
-                    position: latlng,
-                    map: map,
-                    info: content,
-                    icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'                  }));
-                
-                map.setZoom(11); 
-                clearSearchedMarkers();
-        
-               
-            google.maps.event.addListener( favouriteStores, 'click', function() {
-            infoWindow.setContent( this.info );
-            infoWindow.open( map, this);
-                
-            
-               });
-            }    
-        }
-    });
-}
-        
-    function clearSearchedMarkers() {
-        markers.forEach(function (marker) {
-        marker.setMap(null);
-        });
-        markers = [];
-        }
-        
-        
-     function hideMarkers() {
-        for (var i = 0; i < favouriteStores.length; i++) {
-        favouriteStores[i].setVisible(false);
-   }
-   }
-                  
+                      }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
-        
-            
-        infoWindow.close();
-        document.getElementById('btnShow').onclick = showMarkers;
-        document.getElementById('btnHide').onclick = hideMarkers;
+                      function encodeAddress() {
+                        var service = new google.maps.places.PlacesService(map);
+                        service.getDetails({
+                          placeId: place.place_id
+                        }, function (place, status) {
+                          if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            if (results[0]) {
+                              map.setZoom(11);
+                              map.setCenter(results[0].geometry.location);
+                            }
+                          }
+                        });
+                      }
+
+                      if (place.geometry.viewport) {
+                        bounds.union(place.geometry.viewport);
+                      } else {
+                        bounds.extend(place.geometry.location);
+                      }
+                    });
+
+                    map.fitBounds(bounds);
+                  });
+
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                      var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                      };
+                      var marker = new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                        clickable: true,
+                        icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                      });
+
+                      marker.info = new google.maps.InfoWindow({
+                        content: '<b>Your location</b>' + '<br/>' + 'Latitude: ' + position.coords.latitude + '<br/>' + 'Longitude: ' + position.coords.longitude
+                      });
 
 
-      }
-    </script>
-    
+                      google.maps.event.addListener(marker, 'click', function () {
+                        marker.info.open(map, marker);
+
+                      });
+
+                      map.setCenter(pos);
+
+                    }, function () {
+                      handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                  } else {
+                    handleLocationError(false, infoWindow, map.getCenter());
+                  }
+
+
+                  function showMarkers() {
+
+
+                    $.ajax({
+                      url: "/favourite_stores/",
+                      type: 'GET',
+                      dataType: 'json',
+                      success: function (data) {
+
+                        for (var i = 0; i < data.length; i++) {
+
+                          var content = '<b>' + data[i].name + '</b>';
+                          infoWindow = new google.maps.InfoWindow({content: content});
+
+                          var latlng = new google.maps.LatLng(data[i].latitude, data[i].longitude);
+                          favouriteStores.push(new google.maps.Marker({
+                            position: latlng,
+                            map: map,
+                            info: content,
+                            icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                          }));
+
+                          map.setZoom(11);
+                          clearSearchedMarkers();
+
+
+                          google.maps.event.addListener(favouriteStores, 'click', function () {
+                            infoWindow.setContent(this.info);
+                            infoWindow.open(map, this);
+
+
+                          });
+                        }
+                      }
+                    });
+                  }
+
+                  function clearSearchedMarkers() {
+                    markers.forEach(function (marker) {
+                      marker.setMap(null);
+                    });
+                    markers = [];
+                  }
+
+
+                  function hideMarkers() {
+                    for (var i = 0; i < favouriteStores.length; i++) {
+                      favouriteStores[i].setVisible(false);
+                    }
+                  }
+
+
+                  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+                  }
+
+
+                  infoWindow.close();
+                  document.getElementById('btnShow').onclick = showMarkers;
+                  document.getElementById('btnHide').onclick = hideMarkers;
+
+
+                }
+              </script>
+            </div>
+
+
           </div>
         </div>
         <div class="col-xs-12 col-sm-6">
@@ -251,33 +256,34 @@
                 <strong>Favourite stores:</strong>
               </h4>
             </div>
-              <div id="wrapper">
-            <table class="table table-fixed">
-              <thead>
-              <tr>
-                <th class="col-xs-4">Name</th>
-                <th class="col-xs-6">Address</th>
-                <th class="col-xs-2"></th>
-              </tr>
-              </thead>
-              <tbody>
+            <div id="wrapper">
+              <table class="table table-fixed">
+                <thead>
+                <tr>
+                  <th class="col-xs-4">Name</th>
+                  <th class="col-xs-6">Address</th>
+                  <th class="col-xs-2"></th>
+                </tr>
+                </thead>
+                <tbody>
 
-              <% @favourite_stores.each do |favourite_store| %>
-                  <tr>
-                    <td class="col-xs-4 left-al-cell"><%= favourite_store.name %></td>
-                    <td class="col-xs-6 left-al-cell"><%= favourite_store.address %></td>
-                    <td class="col-xs-2"><%= link_to 'delete', favourite_store, method: :delete,
-                                                     data: {confirm: 'Are you sure?'}, class: 'link' %></td>
-                  </tr>
-              <% end %>
-              </tbody>
-            </table>
-              </div>
+                <% @favourite_stores.each do |favourite_store| %>
+                    <tr>
+                      <td class="col-xs-4 left-al-cell"><%= favourite_store.name %></td>
+                      <td class="col-xs-6 left-al-cell"><%= favourite_store.address %></td>
+                      <td class="col-xs-2"><%= link_to 'delete', favourite_store, method: :delete,
+                                                       data: {confirm: 'Are you sure?'}, class: 'link' %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
 
-        </div>
         <button id='btnShow'>Show favourite stores</button>
         <button id='btnHide'>Hide favourite stores</button>
+
+        </div>
 
 
       </div>
