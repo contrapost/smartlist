@@ -7,16 +7,25 @@ class FavouriteStoresController < ApplicationController
   def index
     # noinspection RubyResolve
     @favourite_stores = FavouriteStore.where(user_id:  current_user.id)
+      
   end
 
   # GET /favourite_stores/1
   # GET /favourite_stores/1.json
   def show
+    
   end
 
   # GET /favourite_stores/new
   def new
     @favourite_store = FavouriteStore.new
+
+    @favourite_store.name = params[:name]
+    @favourite_store.address = params[:address]
+    @favourite_store.latitude = params[:lat]
+    @favourite_store.longitude = params[:lng]
+    @favourite_store.user_id = current_user.id
+    @favourite_store.save
   end
 
   # GET /favourite_stores/1/edit
