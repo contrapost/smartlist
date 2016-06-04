@@ -21,11 +21,11 @@ Rails.application.routes.draw do
 
   get 'favourite_lists/make_favourite_list_active'
 
-  get 'favourite_lists/delete_favourite_list'
+  delete 'favourite_lists/delete_favourite_list'
 
   get 'favourite_lists/edit_favourite_list'
 
-  get 'favourite_lists/create_favourite_list'
+  post 'favourite_lists/create_favourite_list'
 
   get 'admin/show_users'
 
@@ -58,6 +58,10 @@ Rails.application.routes.draw do
   get '/set_as_active', to: 'products#set_as_active'
 
   get '/set_as_inactive', to: 'products#set_as_inactive'
+
+  get '/delete_from_favourite_list', to: 'favourite_lists#delete_from_favourite_list'
+
+  get '/add_to_favourite_list', to: 'favourite_lists#add_to_favourite_list'
 
   # get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
 

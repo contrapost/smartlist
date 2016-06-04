@@ -20,7 +20,7 @@
         <div class="form-box">
           <%= form_tag controller: :admin, action: :create_user  do %>
               <div class="field">
-                <%= email_field_tag :user_email, 'user email' %>
+                <%= email_field_tag :user_email, nil, placeholder: 'user email', required: 'required' %>
               </div>
               </br>
               <div class="actions">

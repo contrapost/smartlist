@@ -1,2 +1,73 @@
-<h1>FavouriteLists#show_favourite_lists</h1>
-<p>Find me in app/views/favourite_lists/show_favourite_lists.html.erb</p>
+<head>
+  <% content_for :title, 'Your favourite lists' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h1 class="page-header"><strong>YOUR FAVOURITE LISTS</strong></h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                    <h4>
+                      <strong>FAVOURITE LISTS</strong>
+                    </h4>
+                </div>
+              </div>
+              <table class="table table-fixed">
+                <thead>
+                <tr>
+                  <th class="col-xs-4 col-sm-8 col-md-3 col-lg-3">Favourite List</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @favourite_lists.each do |favourite_list| %>
+                    <tr>
+                      <td class="col-xs-5 col-sm-9 col-md-9 col-lg-9 left-al-cell"><%= favourite_list.name %></td>
+                      <td class="col-xs-3 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'set as active', {controller: :favourite_lists, action: :make_favourite_list_active,
+                                                      id: favourite_list.id},
+                                    class: 'btn btn-info' %>
+                      </td>
+                      <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'edit', {controller: :favourite_lists, action: :edit_favourite_list,
+                                             id: favourite_list.id},
+                                     class: 'btn btn-info' %>
+                      </td>
+                      <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'delete', {controller: :favourite_lists, action: :delete_favourite_list,
+                                               id: favourite_list.id},
+                                      data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-warning' %>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>

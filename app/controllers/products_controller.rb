@@ -1,4 +1,4 @@
-# noinspection RubyResolve
+# noinspection RubyResolve,RailsParamDefResolve
 class ProductsController < ApplicationController
   before_filter :authenticate_user!, :usual_user?
   # before_action :set_product, only: [:show, :edit, :update, :destroy]
@@ -17,20 +17,22 @@ class ProductsController < ApplicationController
 
   def show_all_active_products
     @active_products = Product.where(user_id: current_user.id, active: true)
-    @products = Product.where(user_id: current_user.id)
+    @products = show_all_user_products(user_id: current_user.id)
+  end
+
+  def show_all_user_products(user_id)
+    Product.where(user_id)
   end
 
   def set_as_active
     @product = Product.find(params[:id])
     @product.update_attribute(:active, true)
-    @product.save!
     redirect_to shopping_list_url
   end
 
   def set_as_inactive
     @product = Product.find(params[:id])
     @product.update_attribute(:active, false)
-    @product.save!
     redirect_to shopping_list_url
   end
 

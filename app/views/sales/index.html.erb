@@ -29,7 +29,8 @@
                     </h4>
                   </div>
                   <div class="col-xs-5 col-sm-3">
-                    <%= link_to 'add sale', new_sale_path, class: 'btn btn-success' %>
+                    <%= # noinspection RubyResolve
+                        link_to 'add sale', new_sale_path, class: 'btn btn-success' %>
                   </div>
                 </div>
               </div>
@@ -49,13 +50,14 @@
                     <tr>
                       <td class="col-xs-4 col-sm-3 col-md-3 col-lg-3 left-al-cell"><%= sale.name %></td>
                       <td class="col-xs-4 col-sm-3 col-md-3 col-lg-3 left-al-cell">
-                        <%= sale.expiry_date.strftime("%d.%m.%Y %H:%M") %>
+                        <%= sale.expiry_date.strftime('%d.%m.%Y %H:%M') %>
                       </td>
                       <td class="col-sm-3 col-md-3 col-lg-3 left-al-cell">
                         <div class="hidden-xs"><%= sale.image_url %></div>
                         </td>
                       <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
-                        <%= link_to 'Edit', edit_sale_path(sale), class: 'btn btn-info' %>
+                        <%= # noinspection RubyResolve
+                            link_to 'Edit', edit_sale_path(sale), class: 'btn btn-info' %>
                       </td>
                       <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
                         <%= link_to 'delete', sale, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning' %>

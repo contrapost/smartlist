@@ -53,6 +53,99 @@
               </div>
             </div>
 
+            <%= link_to '#add_favourite_list', :remote => true, 'data-toggle' => 'modal', class: 'btn btn-info' do %>
+                Add to favourites
+            <% end %>
+            <%= link_to '#send_as_email', :remote => true, 'data-toggle' => 'modal', class: 'btn btn-success' do %>
+                Send as email
+            <% end %>
+
+            <!--Modal "Add as favourite store"-->
+            <div class="modal" id="add_favourite_list" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+              <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="modalLabel">Add to favourite lists</h3>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="well well-sm">
+                            <%= # noinspection RubyResolve
+                                form_tag(favourite_lists_create_favourite_list_path) do %>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <div class="field">
+                                        <%= text_field_tag :name, nil, placeholder: 'Enter name of your list',
+                                                           required: 'required' %>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="actions">
+                                      <%= submit_tag 'Add to favourites', class: 'button btn btn-sign-in pull-left' %>
+                                    </div>
+                                  </div>
+                                </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!--modal-body-->
+                </div> <!--modal-content-->
+              </div> <!--modal-dialog-->
+            </div> <!--modal-->
+
+            <!--Modal "Send shopping list as email"-->
+            <div class="modal" id="send_as_email" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+              <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="modalLabel">Send list as email</h3>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="well well-sm">
+                            <form>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                      <input type="email" class="form-control" id="email" placeholder="Enter email" required="required"/>
+                                    </div>
+                                  </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                  <button type="submit" class="btn btn-primary pull-left" id="btnContactUs">
+                                    Send Message
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!--modal-body-->
+                </div> <!--modal-content-->
+              </div> <!--modal-dialog-->
+            </div> <!--modal-->
+
 
           </div>
         </div>
@@ -91,8 +184,6 @@
             </div>
           </div>
 
-          <button class="btn btn-info">Add to favourites</button>
-          <button class="btn btn-success">Send as email</button>
 
         </div>
 
