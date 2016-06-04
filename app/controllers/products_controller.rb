@@ -1,7 +1,7 @@
 # noinspection RubyResolve
 class ProductsController < ApplicationController
   before_filter :authenticate_user!, :usual_user?
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  # before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -12,6 +12,26 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find(params[:id])
+  end
+
+  def show_all_active_products
+    @active_products = Product.where(user_id: current_user.id, active: true)
+    @products = Product.where(user_id: current_user.id)
+  end
+
+  def set_as_active
+    @product = Product.find(params[:id])
+    @product.update_attribute(:active, true)
+    @product.save!
+    redirect_to shopping_list_url
+  end
+
+  def set_as_inactive
+    @product = Product.find(params[:id])
+    @product.update_attribute(:active, false)
+    @product.save!
+    redirect_to shopping_list_url
   end
 
   # GET /products/new
@@ -21,6 +41,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @product = Product.find(params[:id])
   end
 
   # POST /products
@@ -42,6 +63,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product = Product.find(params[:id])
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -56,6 +78,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    @product = Product.find(params[:id])
     @product.destroy
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }

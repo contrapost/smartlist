@@ -53,4 +53,4 @@ Product.create!(user_id: 1, name: 'Apples', description: 'Apples are very health
 Product.create!(user_id: 1, name: 'Onion', description: 'Onion is very healthy', price: 13.43, store: 'Coop')
 Product.create!(user_id: 2, name: 'Sausage', description: 'Sausages are very healthy', price: 14.43, store: 'Coop')
 Product.create!(user_id: 3, name: 'Milk', description: 'Milk is very healthy', price: 15.43, store: 'Menu')
-Product.create!(user_id: 3, name: 'Ham', description: 'Ham is very healthy', price: 16.43, store: 'Ica')
+Product.create!(user_id: 3, name: 'Ham', description: 'Ham is very healthy', price: 16.43, store: 'Ica', active: true)

@@ -1,5 +1,9 @@
 class AddAdminToUsers < ActiveRecord::Migration
-  def change
-    add_column :users, :admin, :boolean, default: false
+  def up
+    change_column :products, :active, :boolean, :default => true
+  end
+
+  def down
+    change_column :products, :active, :boolean, :default => nil
   end
 end

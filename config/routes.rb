@@ -41,6 +41,12 @@ Rails.application.routes.draw do
 
   get '/show_all_sales', to: 'smartlist_app#show_all_sales'
 
+  get 'shopping_list' => '/show_all_active_products', to: 'products#show_all_active_products'
+
+  get '/set_as_active', to: 'products#set_as_active'
+
+  get '/set_as_inactive', to: 'products#set_as_inactive'
+
   # get 'dashboard' => 'smartlist_app#dashboard_user', as: :dashboard
 
   # devise_scope :user do

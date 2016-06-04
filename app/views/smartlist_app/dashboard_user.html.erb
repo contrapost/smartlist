@@ -18,7 +18,8 @@
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-box">
-            <%= link_to image_tag('notes.png', width: 100, height: 100, border: 0), {action: 'dashboard_user', controller: 'smartlist_app'}, {class: 'dock-item'} %>
+            <%= link_to image_tag('notes.png', width: 100, height: 100, border: 0),
+                        {action: 'show_all_active_products', controller: 'products'}, {class: 'dock-item'} %>
             <p class="dashboard_category_title">SMART LIST</p>
             <p class="nospace">
               Make, edit, save or share your shopping lists.
