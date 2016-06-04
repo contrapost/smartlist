@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :price %><br>
-    <%= f.text_field :price, placeholder: 'price', size: '42x10' %>
+    <%= f.number_field :price, class: :text_field, step: 0.01, placeholder: 'price', size: '42x10' %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -33,7 +33,9 @@
   </div>
     <br>
 <!--  <div class="field">
-    <%= f.label :favourite_store_id %><br>
+    <%= #TODO: Saving of information about favoutite store that sells the product
+        #TODO: can be imlemented in next version of the web page
+        f.label :favourite_store_id %><br>
     <%= f.number_field :favourite_store_id %>
   </div>-->
   <div class="actions">

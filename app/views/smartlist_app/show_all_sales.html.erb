@@ -29,25 +29,34 @@
                     </h4>
                   </div>
                   <div class="col-xs-5 col-sm-3">
-                    <%= link_to 'add sale', new_sale_path, class: 'btn btn-success' %>
+                    <%= link_to 'add sale', new_sale_path, class: 'btn btn-success'
+                         %>
                   </div>
                 </div>
               </div>
               <table class="table table-fixed">
                 <thead>
                 <tr>
-                  <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Name</th>
-                  <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Expiry Date</th>
-                  <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Image URL</th>
+                  <th class="col-xs-6 col-sm-4 col-md-4 col-lg-4">Name</th>
+                  <th class="col-xs-6 col-sm-4 col-md-4 col-lg-4">Expiry Date</th>
+                  <th class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="hidden-xs">
+                      Image URL
+                    </div>
+                  </th>
                 </tr>
                 </thead>
                 <tbody>
-                <!--TODO: Delete show button-->
                 <% @sales.each do |sale| %>
                     <tr>
-                      <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4 left-al-cell"><%= sale.name %></td>
-                      <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4 left-al-cell"><%= sale.expiry_date %></td>
-                      <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4 left-al-cell"><%= sale.image_url %></td>
+                      <td class="col-xs-6 col-sm-4 col-md-4 col-lg-4 left-al-cell"><%= sale.name %></td>
+                      <td class="col-xs-6 col-sm-4 col-md-4 col-lg-4 left-al-cell">
+                        <%= sale.expiry_date.strftime('%d.%m.%Y %H:%M') %>
+                      </td>
+                      <td class="col-sm-4 col-md-4 col-lg-4 left-al-cell">
+                        <div class="hidden-xs">
+                          <%= sale.image_url %>
+                        </div>
                       </td>
                     </tr>
                 <% end %>
