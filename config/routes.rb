@@ -1,11 +1,31 @@
 Rails.application.routes.draw do
 
+  root 'smartlist_app#dashboard_user'
+
   resources :products
+
   resources :sales
 
+=begin
   resource :user do
     resource :users
   end
+=end
+
+  resources :favourite_stores
+
+  # noinspection RubyResolve
+  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks'}
+
+  get 'favourite_lists/show_favourite_lists'
+
+  get 'favourite_lists/make_favourite_list_active'
+
+  get 'favourite_lists/delete_favourite_list'
+
+  get 'favourite_lists/edit_favourite_list'
+
+  get 'favourite_lists/create_favourite_list'
 
   get 'admin/show_users'
 
@@ -24,14 +44,6 @@ Rails.application.routes.draw do
   post 'admin/update_user'
 
   delete 'admin/destroy_user'
-
-  # match 'users/:id' => 'admin#destroy_user', :via => :delete, :as => :admin_destroy_user
-
-  resources :favourite_stores
-  # noinspection RubyResolve
-  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks'}
-
-  root 'smartlist_app#dashboard_user'
 
   get 'dashboard_admin' => 'smartlist_app#dashboard_admin', as: :dashboard_admin
 
