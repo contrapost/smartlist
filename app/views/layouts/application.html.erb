@@ -59,49 +59,35 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="well well-sm">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="name">
-                            Name</label>
-                          <input class="form-control" id="name" placeholder="Enter name" required="required"/>
-                        </div>
-                        <div class="form-group">
-                          <label for="email">
-                            Email Address</label>
-                          <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                </span>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" required="required"/>
+                  <%= # noinspection RubyResolve
+                      form_tag(contact_us_path) do %>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+
+                            <div class="input-group">
+                              <div class="field">
+                                <%= email_field_tag :email, nil, placeholder: 'Enter your email',
+                                                    required: 'required' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="actions">
+                            <%= submit_tag 'send message', class: 'button btn btn-sign-in pull-left' %>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label for="subject">
-                            Subject</label>
-                          <select id="subject" name="subject" class="form-control" required="required">
-                            <option value="na" selected="">Choose One:</option>
-                            <option value="service">General Customer Service</option>
-                            <option value="suggestions">Suggestions</option>
-                            <option value="product">Product Support</option>
-                          </select>
+                        <div class="col-md-6">
+                          <div class="form-group">
+
+                            <div class="field">
+                              <%= text_area_tag :message, nil, placeholder: 'Enter your message',
+                                                required: 'required', rows: 20 %>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="name">
-                            Message</label>
-                            <textarea name="message" id="message" class="form-control" rows="50" cols="25" required="required"
-                                      placeholder="Message"></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
-                          Send Message
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+                  <% end %>
                 </div>
               </div>
             </div>
