@@ -35,7 +35,7 @@ class SmartlistAppController < ApplicationController
   def show_all_sales
     @sales
     if !current_user.admin? && !current_user.store?
-      @sales = Sale.all.where("? > ?", :expiry_date, DateTime.now)
+      @sales = Sale.all.where("expiry_date > ?", DateTime.now)
     else
       redirect_to '/'
     end
