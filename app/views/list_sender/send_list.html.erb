@@ -1,0 +1,28 @@
+<h3><%= @greeting %>,</h3>
+
+<p>Please, buy following for me:</p>
+
+<div>
+  <table class="table table-fixed">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% @active_list.each do |active_product| %>
+        <tr>
+          <td><%= active_product.name %></td>
+          <td><%= active_product.store %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<p>Thank you,</p>
+
+
+<p><%= @current_user_email %></p>

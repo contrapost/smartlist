@@ -79,6 +79,15 @@ class FavouriteListsController < ApplicationController
 
   end
 
+  def send_list_by_mail
+    @email = params[:email]
+    ListSender.send_list(@email, get_active_products, current_user).deliver
+    respond_to do |format|
+      format.html { redirect_to shopping_list_path, notice: "Shopping list was successful sent to #{@email} " }
+      format.json { render :show, status: :ok, location: @favourite_list }
+    end
+  end
+
   private
   def usual_user?
     redirect_to '/' unless !current_user.admin? && !current_user.store?

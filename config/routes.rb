@@ -63,6 +63,8 @@ Rails.application.routes.draw do
 
   get '/add_to_favourite_list', to: 'favourite_lists#add_to_favourite_list'
 
+  post '/send_list_by_mail', to: 'favourite_lists#send_list_by_mail'
+
   # Admin routes
   get 'admin/show_users'
 

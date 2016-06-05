@@ -1,0 +1,25 @@
+<%= @greeting %>,
+
+Please, buy following for me:
+
+<table class="table table-fixed">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @active_list.each do |active_product| %>
+      <tr>
+        <td><%= active_product.name %></td>
+        <td><%= active_product.store %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+Thank you,
+
+<%= @current_user_email %>

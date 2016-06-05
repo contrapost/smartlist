@@ -41,11 +41,11 @@
                       <tr>
                         <td class="col-xs-4 left-al-cell"><%= active_product.name %></td>
                         <td class="col-xs-6 left-al-cell"><%= active_product.store %></td>
-                        <td class="col-xs-2"><%= link_to 'delete',
+                        <td class="col-xs-2"><%= link_to 'done',
                                                          {controller: :products,
                                                           action: :set_as_inactive,
                                                           id: active_product.id},
-                                                         class: 'link' %></td>
+                                                         class: 'btn btn-success' %></td>
                       </tr>
                   <% end %>
                   </tbody>
@@ -117,26 +117,25 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="well well-sm">
-                            <form>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                </span>
-                                      <input type="email" class="form-control" id="email" placeholder="Enter email" required="required"/>
+
+                            <%= # noinspection RubyResolve
+                                form_tag(send_list_by_mail_path) do %>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <div class="field">
+                                        <%= email_field_tag :email, nil, placeholder: 'Enter name of your list',
+                                                           required: 'required' %>
+                                      </div>
                                     </div>
                                   </div>
-
+                                  <div class="col-md-6">
+                                    <div class="actions">
+                                      <%= submit_tag 'send list', class: 'button btn btn-sign-in pull-left' %>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="col-md-6">
-                                  <button type="submit" class="btn btn-primary pull-left" id="btnContactUs">
-                                    Send Message
-                                  </button>
-                                </div>
-                              </div>
-                            </form>
-
+                            <% end %>
                           </div>
                         </div>
                       </div>
@@ -176,7 +175,7 @@
                       <td class="col-xs-2"><%= link_to 'add',
                                                        {action: :set_as_active, controller: :products,
                                                         id: product.id},
-                                                       class: 'link' %></td>
+                                                       class: 'btn btn-warning' %></td>
                     </tr>
                 <% end %>
                 </tbody>
