@@ -1,0 +1,9 @@
+<%= image_tag @shopping_detail.image.url %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @shopping_detail.description %>
+</p>
+
+<%= link_to 'Edit', edit_shopping_detail_path(@shopping_detail) %> |
+<%= link_to 'Back', shopping_details_path %>

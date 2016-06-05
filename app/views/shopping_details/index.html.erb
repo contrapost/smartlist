@@ -1,0 +1,27 @@
+<h1>Shopping Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shopping_details.each do |shopping_detail| %>
+      <tr>
+        <td><%= image_tag shopping_detail.image.url(:medium) %></td>
+        <td class="col-xs-6 left-al-cell"><%= shopping_detail.description %></td>
+        <td><%= link_to 'Show', shopping_detail %></td>
+        <td><%= link_to 'Edit', edit_shopping_detail_path(shopping_detail) %></td>
+        <td><%= link_to 'Destroy', shopping_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shopping detail', new_shopping_detail_path %>

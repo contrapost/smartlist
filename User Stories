@@ -5,7 +5,7 @@ Scenario: User logs in to the application using social media account
   When I go to the sign in page
   And I click either the Facebook button, the Twitter button or the Gooogle+ button
   Then I should be prompted for my log in credentials of the selected social media
-  And when I've authenticatet on the selected social media site I should be logged in to the application
+  And when I've authenticated on the selected social media site I should be logged in to the application
 
 Scenario: User writes a shopping list
   Given I've correctly logged into the application

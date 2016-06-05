@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605143123) do
+ActiveRecord::Schema.define(version: 20160605204502) do
 
   create_table "budgets", force: :cascade do |t|
     t.integer  "product_id"
@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(version: 20160605143123) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
+  create_table "shopping_details", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "description"
+  end
 
   create_table "shopping_lists", force: :cascade do |t|
     t.text     "name"
