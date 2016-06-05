@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'budgets/show_budget'
+
   resources :products
 
   resources :sales

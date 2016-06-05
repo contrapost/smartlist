@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :sales, dependent: :destroy
   has_many :products, dependent: :destroy
   has_many :favourite_lists, dependent: :destroy
+  has_many :budgets
 
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and

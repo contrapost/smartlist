@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605123125) do
+ActiveRecord::Schema.define(version: 20160605143123) do
+
+  create_table "budgets", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "favourite_lists", force: :cascade do |t|
     t.text     "name",       default: "Unnamed list"
