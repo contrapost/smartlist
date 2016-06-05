@@ -1,0 +1,122 @@
+<head>
+  <% content_for :title, 'Your recipes' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h1 class="page-header"><strong>YOUR RECIPES</strong></h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-7 col-sm-9">
+                    <h4>
+                      <strong>RECIPES</strong>
+                    </h4>
+                  </div>
+                  <div class="col-xs-5 col-sm-3">
+                    <%= link_to '#create_recipe', :remote => true, 'data-toggle' => 'modal',  class: 'btn btn-success' do %>
+                        create recipe
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-fixed">
+                <thead>
+                <tr>
+                  <th class="col-xs-4 col-sm-8 col-md-3 col-lg-3">Recipes</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @recipes.each do |recipe| %>
+                    <tr>
+                      <td class="col-xs-5 col-sm-9 col-md-9 col-lg-9 left-al-cell"><%= recipe.name %></td>
+                      <td class="col-xs-3 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'set as active', {controller: :recipes, action: :set_recipe_as_active_list,
+                                                      id: recipe.id},
+                                    class: 'btn btn-info' %>
+                      </td>
+                      <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'edit', {controller: :recipes, action: :show_recipe_constructor,
+                                             id: recipe.id},
+                                    class: 'btn btn-info' %>
+                      </td>
+                      <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'delete', {controller: :recipes, action: :delete_recipe,
+                                               id: recipe.id},
+                                    data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-warning' %>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--Modal "Add as favourite list"-->
+<div class="modal" id="create_recipe" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title" id="modalLabel">Add to favourite lists</h3>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="well well-sm">
+                <%= # noinspection RubyResolve
+                    form_tag(register_new_recipe_path) do %>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="field">
+                            <%= text_field_tag :name, nil, placeholder: 'Enter name of your list',
+                                               required: 'required' %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="actions">
+                          <%= submit_tag 'Add to favourites', class: 'button btn btn-sign-in pull-left' %>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!--modal-body-->
+    </div> <!--modal-content-->
+  </div> <!--modal-dialog-->
+</div> <!--modal-->
+
+
+</body>

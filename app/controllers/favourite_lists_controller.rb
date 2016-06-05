@@ -89,7 +89,7 @@ class FavouriteListsController < ApplicationController
   end
 
   def name_is_available?(name_to_set)
-    FavouriteList.where(name: name_to_set).blank?
+    FavouriteList.where(name: name_to_set, user_id: current_user.id).blank?
   end
 
   def show_all_user_products

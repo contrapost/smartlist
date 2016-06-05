@@ -1,0 +1,111 @@
+<head>
+  <% content_for :title, 'Recipe constructor' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h1 class="page-header"><strong>RECIPE CONSTRUCTOR</strong></h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+          <div class="col-xs-12 col-sm-6 ">
+
+            <div class="panel panel-default panel-danger">
+              <div class="panel-heading">
+                <h4>
+                  <strong>Recipe <%= @recipe.name%>:</strong>
+                </h4>
+              </div>
+              <div id="wrapper">
+                <table class="table table-fixed">
+                  <thead>
+                  <tr>
+                    <th class="col-xs-4">Name</th>
+                    <th class="col-xs-6">Address</th>
+                    <th class="col-xs-2"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <% @products_in_recipe.each do |product, recipe = @recipe| %>
+                      <tr>
+                        <td class="col-xs-4 left-al-cell"><%= product.name %></td>
+                        <td class="col-xs-6 left-al-cell"><%= product.description %></td>
+                        <td class="col-xs-2"><%= link_to 'delete',
+                                                         {controller: :recipes,
+                                                          action: :delete_product_from_recipe,
+                                                          id: product.id,
+                                                          recipe_id: recipe.id
+                                                         },
+                                                         class: 'link' %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+                <%= link_to 'save recipe', recipes_show_recipes_path, class: 'btn btn-info' %>
+
+
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+
+
+          <div class="panel panel-default panel-success">
+            <div class="panel-heading">
+              <h4>
+                <strong>Your products:</strong>
+              </h4>
+            </div>
+            <div>
+              <table class="table table-fixed">
+                <thead>
+                <tr>
+                  <th class="col-xs-4">Name</th>
+                  <th class="col-xs-6">Description</th>
+                  <th class="col-xs-2"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <% @products.each do |product, recipe = @recipe| %>
+                    <tr>
+                      <td class="col-xs-4 left-al-cell"><%= product.name %></td>
+                      <td class="col-xs-6 left-al-cell"><%= product.description %></td>
+                      <td class="col-xs-2"><%= link_to 'add',
+                                                       {action: :add_product_to_recipe, controller: :recipes,
+                                                        id: product.id,
+                                                       recipe_id: recipe.id
+                                                       },
+                                                       class: 'link' %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>

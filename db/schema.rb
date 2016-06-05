@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604201247) do
+ActiveRecord::Schema.define(version: 20160605123125) do
 
   create_table "favourite_lists", force: :cascade do |t|
     t.text     "name",       default: "Unnamed list"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20160604201247) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.boolean  "active"
+  end
+
+  create_table "products_recipes", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "recipe_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.text     "name",       default: "Unnamed recipe"
+    t.integer  "user_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "sales", force: :cascade do |t|
