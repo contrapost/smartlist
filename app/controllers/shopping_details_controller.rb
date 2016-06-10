@@ -4,7 +4,7 @@ class ShoppingDetailsController < ApplicationController
   # GET /shopping_details
   # GET /shopping_details.json
   def index
-    @shopping_details = ShoppingDetail.all
+    @shopping_details = ShoppingDetail.where(user_id: current_user.id)
   end
 
   # GET /shopping_details/1
@@ -69,6 +69,6 @@ class ShoppingDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopping_detail_params
-      params.require(:shopping_detail).permit(:image, :description)
+      params.require(:shopping_detail).permit(:image, :description, :user_id)
     end
 end
