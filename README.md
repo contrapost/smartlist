@@ -19,12 +19,12 @@ Attachments:
 * [General level application diagram](docs/API.pdf)
 * [User Stories as cucumber-features](docs/UserStories/)
 * [Wireframes](docs/wireframes/)
-* [Report](docs/rapport.pdf)
+* [Report](docs/report.pdf)
 
 --
 
 ## Prerequests for using the application:
-* You can login as user, admin or store by using passwords from [seeds.rb](db/seeds.rb) both on localhost and 
+* You can login as user, admin or store by using passwords from [seeds.rb](db/seeds.rb) both on localhost and on https://thesmartlist.herokuapp.com/
 * All of application's part are fully functionable except Budget that can be completed in the next version of the site.
 
 ## Deploying
