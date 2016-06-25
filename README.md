@@ -1,7 +1,7 @@
 # smartlist
 
-Participants:
-* Alexander Shipunov, shiale14@student.westerdals.no, shiale14
+Author:
+* Alexander Shipunov, contrapost
 
 Project name: SMARTLIST
 
