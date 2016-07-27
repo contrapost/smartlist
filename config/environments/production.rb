@@ -71,7 +71,7 @@ Rails.application.configure do
       authentication: "plain",
       enable_starttls_auto: true,
       user_name: 'thesmartlistmailer@gmail.com',
-      password: 'thesmartlist'
+      password: 'smartlister'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
