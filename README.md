@@ -19,7 +19,6 @@ Attachments:
 * [Wireframes](docs/wireframes/)
 * [Report](docs/report.pdf)
 
---
 
 ## Prerequests for using the application:
 * You can login as user, admin or store by using passwords from [seeds.rb](db/seeds.rb) both on localhost and on https://thesmartlist.herokuapp.com/
